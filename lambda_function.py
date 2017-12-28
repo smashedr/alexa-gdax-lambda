@@ -48,6 +48,7 @@ def alexa_error(error='Unknown error, please try something else', title='UE'):
 
 
 def acct_overview(event):
+    url = 'https://api.gdax.com/accounts'
     alexa = alexa_response(
         {},
         build_speech_response(
