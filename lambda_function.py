@@ -84,7 +84,7 @@ def acct_overview(event):
             )
         else:
             balance = a['balance']
-        speech += '{} contains {}'.format(
+        speech += '{} contains {}. '.format(
             a['currency'], balance
         )
 
