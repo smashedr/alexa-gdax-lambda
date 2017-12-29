@@ -49,6 +49,14 @@ def alexa_error(error='Unknown error, please try something else', title='UE'):
     return alexa
 
 
+def round_usd(in_float):
+    return round(float(in_float), 2)
+
+
+def no_float(in_float):
+    return int(str(in_float).replace('.', ''))
+
+
 def acct_overview(event):
     url = 'https://dev.alexa-gdax.space/api/accounts/'
     data = {
@@ -111,14 +119,6 @@ def acct_overview(event):
         )
     )
     return alexa
-
-
-def round_usd(in_float):
-    return round(float(in_float), 2)
-
-
-def no_float(in_float):
-    return int(str(in_float).replace('.', ''))
 
 
 def lambda_handler(event, context):
