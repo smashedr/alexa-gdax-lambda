@@ -99,10 +99,16 @@ def acct_overview(event):
             hold = round_usd(a['hold'])
         else:
             balance = a['balance']
+            if balance.endswith('0'):
+                balance = '{}0'.format(balance.rstrip('0'))
             available = a['available']
+            if available.endswith('0'):
+                available = '{}0'.format(available.rstrip('0'))
             hold = a['hold']
+            if hold.endswith('0'):
+                hold = '{}0'.format(hold.rstrip('0'))
 
-        speech += '{} contains {}. '.format(
+        speech += '{} account contains {}. '.format(
             a['currency'], balance
         )
         if no_float(available) > 0 \
