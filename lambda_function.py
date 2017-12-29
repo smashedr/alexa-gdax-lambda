@@ -61,7 +61,12 @@ def acct_overview(event):
     accts = []
     for a in d:
         if int(a['balance'].replace('.', '')) > 0:
-            c = {'balance': a['balance'], 'currency': a['currency']}
+            c = {
+                'balance': a['balance'],
+                'currency': a['currency'],
+                'available': a['available'],
+                'hold': a['hold'],
+            }
             accts.append(c)
 
     if not accts:
@@ -80,13 +85,24 @@ def acct_overview(event):
     for a in accts:
         if a['currency'] == 'USD':
             balance = '{} dollars'.format(
-                round(float(a['balance']), 2)
+                round_usd(a['balance'])
             )
+            available = round_usd(a['available'])
+            hold = round_usd(a['hold'])
         else:
             balance = a['balance']
+            available = a['available']
+            hold = a['hold']
+
         speech += '{} contains {}. '.format(
             a['currency'], balance
         )
+        if no_float(available) > 0 \
+                and round_usd(a['balance']) != round_usd(a['available']):
+            speech += '{} is available '.format(available)
+
+        if no_float(hold) > 0:
+            speech += 'with {} on hold. '.format(hold)
 
     alexa = alexa_response(
         {},
@@ -95,6 +111,14 @@ def acct_overview(event):
         )
     )
     return alexa
+
+
+def round_usd(in_float):
+    return round(float(in_float), 2)
+
+
+def no_float(in_float):
+    return int(str(in_float).replace('.', ''))
 
 
 def lambda_handler(event, context):
