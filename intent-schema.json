@@ -2,6 +2,15 @@
   "intents": [
     {
       "intent": "AccountOverview"
+    },
+    {
+      "intent": "CoinStatus",
+      "slots": [
+        {
+          "name": "currency",
+          "type": "SUPPORTED_CURRENCIES"
+        }
+      ]
     }
   ]
 }

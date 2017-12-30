@@ -1,3 +1,12 @@
+CoinStatus {} stats
+CoinStatus {} statistics
+CoinStatus {} details
+CoinStatus {} information
+CoinStatus {} daily stats
+CoinStatus {} daily statistics
+CoinStatus {} twenty four hour stats
+CoinStatus {} overview
+
 AccountOverview accounts overview
 AccountOverview for accounts overview
 AccountOverview for an accounts overview
